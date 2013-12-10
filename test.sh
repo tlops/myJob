@@ -1,2 +1,4 @@
 #!/bin/bash
-echo "hej på dig!"
+echo "$USER"
+echo "Hej $USER!"
+exit 0
