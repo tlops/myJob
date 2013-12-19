@@ -14,14 +14,14 @@ fi
 
 SRCD=$1     # file to be compressed
 TGTD="$HOME/PALL/Backup/"   # destination where the new file is saved
+Name=`basename $SRCD`
 if [ ! -e $TGTD ]; then  # if the path does not exist
      mkdir -p $TGTD         # create the path
 elif [ ! -r $TGTD ] && [ ! -w $TGTD ]; then # is the path read- or wri
                                             # teable?
      echo "This destination destination is not read or Writeable!"
 else
-    OF="$USER-$(date +%Y-%m-%d).tar.gz" # the compressed file's name
-    tar -cpzf $TGTD$OF $SRCD # actual compression of the file
+    OF="$Name-$(date +%Y-%m-%d).tar.gz" # the compressed file's name
     if [ -e $TGTD$OF ]; then # if the file exists notify user!!
         echo "The file exists!"
         read -p "Do you want to Overwrite it! [Y/N]" Ans
@@ -31,13 +31,14 @@ else
                 ;;
 
             [nN])       # No save with a new name
-                OF="home-$(date +%Y-%m-%d-%H-%M).tar.gz"
+                OF="$Name-$(date +%Y-%m-%d-%H-%M).tar.gz"
                 tar -cpzf $TGTD$OF $SRCD
                 ;;
 
             *) echo "Enter Y or N!"
         esac
     fi
+tar -cpzf $TGTD$OF $SRCD # actual compression of the file
 
 
 fi
