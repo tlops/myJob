@@ -1,20 +1,31 @@
 #!/bin/bash
 #
 #
-function add {
+function Add {
     sum=$(( $Nr1 + $Nr2 ))
     echo "$Nr1 + $Nr2 = $sum"
 }
 
-function minus {
+function Minus {
     diff=$(( $Nr1 - $Nr2 ))
     echo "$Nr1 - $Nr2 = $diff"
 }
 
-read -p "Enter two Numbers: " Nr1 Nr2
-add $Nr1 $Nr2
+function Multi {    #Multiplication Function
+    prod=$(( $Nr1 * $Nr2 ))
+    echo "$Nr1 * $Nr2 = $prod"
+}
+
+Divide () {         # divide function
+    kvot=$( bc -l <<< "scale=3; $Nr1/$Nr2" )
+    echo "$Nr1 / $Nr2 = $kvot"
+}
+
+
 
 read -p "Enter two Numbers: " Nr1 Nr2
-minus $Nr1 $Nr2
-echo $# $*
-
+Add $Nr1 $Nr2
+Minus $Nr1 $Nr2
+Multi $Nr1 $Nr2
+Divide $Nr1 $Nr2
+exit 0
