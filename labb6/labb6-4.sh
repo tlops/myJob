@@ -28,4 +28,6 @@ Add $Nr1 $Nr2
 Minus $Nr1 $Nr2
 Multi $Nr1 $Nr2
 Divide $Nr1 $Nr2
+
+#echo "$#"
 exit 0

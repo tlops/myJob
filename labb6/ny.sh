@@ -5,10 +5,10 @@ Partition=$( df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $6 }')
 for i in $Percentage; do
     (( i++ ))
     if [ $i -ge 20 ]; then
-        echo "Running out of space  ($i%) on $(hostname) as on $(date)"
+        echo "Running out of space \"$Partition ($i%)\" on $(hostname) as on $(date)"
         #echo "$Percentage  $Partition "
-    else
-        echo "$( df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' )"
+#    else
+#        echo "$( df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' )"
     fi
 done
 
