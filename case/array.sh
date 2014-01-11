@@ -25,4 +25,12 @@ for ((co=0; co<${#myArray[@]};co++)); do
    if [ ${Population[$co]} -gt 300 ]; then 
         printf "%s har %d invånare\n" "${myArray[$co]}" "${Population[$co]}";
     fi
-done
+done 
+
+####### More Lists #################
+echo ""
+IpList=(`cat hostlist.txt | awk '{print $2}'`)
+NewList=(`cat hostlist.txt | awk '{print $1}'`)
+    for df in ${!NewList[@]}; do
+        echo ${NewList[$df]} "  " ${IpList[$df]}
+    done
