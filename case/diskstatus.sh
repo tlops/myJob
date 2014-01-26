@@ -16,9 +16,9 @@ declare -a Partition=($( df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ pri
 echo -e "$Output \n"
 
         for i in ${!Partition[@]}; do
-           if [ ${Percentage[$i]} -gt 80 ]; then
+           if [ ${Percentage[$i]} -gt 20 ]; then
                  echo "Running out of space \"${Partition[$i]} (${Percentage[$i]}%)\" on $(hostname) as on $(date)" |
-                 mail root -s "Disk Status Alert!" 
+                 mail tlops -s "Disk Status Alert!" 
            fi
         done
 sleep 6
