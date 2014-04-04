@@ -99,7 +99,7 @@ exit 0
             CreateAccount Login`
 
            case $Option in
-               CreateAccount) NewAccount ;;
+               CreateAccoun) NewAccount ;;
                       Login) LoginAcct ;;
                         *) zenity --info --text="No option was selected" && exit 5
                     esac
