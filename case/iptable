@@ -1,0 +1,61 @@
+#!/bin/bash 
+# Falade Olumuyiwa Lx13  Written 04/02/2014
+
+#Option=$1
+if [ $EUID -ne 0 ]; then
+    echo "Contact your ADMIN to run this skript!!"
+    exit 2
+fi
+
+if [ $# -ne 1 ]; then
+    echo "You need an argument: start|stop|list!"
+    exit 3
+fi
+Start_skript () {
+# This script starts the IPtable
+    /sbin/iptables -F   #Flush iptables
+    /sbin/iptables -Z   #Resets iptables
+    
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+    # The Iptable rules
+    iptables -t nat --append POSTROUTING --out-interface eth0 -j MASQUERADE
+    iptables -A Forward -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT  # Inward traffic towards the LAN
+    iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT   # Outward traffic towards INTERNET
+}
+
+Stop_skript () { 
+     /sbin/iptables -F   #Flush iptables
+     /sbin/iptables -Z   #Resets iptables
+
+     echo 0 > /proc/sys/net/ipv4/ip_forward
+}
+
+List_skript () {
+    /sbin/iptables -L # Lists all rules
+}
+
+Status_skript () {
+    enabled=`cat /proc/sys/net/ipv4/ip_forward`
+    if [ $enabled -eq 1 ]; then
+        echo "Status......UP!!!"
+    else
+        echo "Status......DOWN!!!"
+    fi
+}
+case $1 in 
+    start )
+        Start_skript ;;
+    stop )
+        Stop_skript ;;
+    list )
+        List_skript ;;
+    status )
+        Status_skript ;;
+    *)
+        echo "Du behöver valj start|stop|list|status argument!!!"
+esac
+        
+
+exit 0
+
+
