@@ -34,9 +34,9 @@ Webstatus () {
 Test () { 
     ping -c 1 -w 1 ${IpAdd[$i]} &>/dev/null
     if [ $? -eq 0 ]; then
-        echo -en "${Name[$i]} \t ${IpAdd[$i]} \t \e[32mUp\e[0m" # prints Up in green 'n' puts the prompt on same line
+        echo -en "${Name[$i]} \t\t ${IpAdd[$i]} \t \e[32mUp\e[0m" # prints Up in green 'n' puts the prompt on same line
     else
-        echo -en "${Name[$i]} \t ${IpAdd[$i]} \t \e[31mDown\e[0m" # Prints down in red
+        echo -en "${Name[$i]} \t\t ${IpAdd[$i]} \t \e[31mDown\e[0m" # Prints down in red
     fi
 
     # This section tests the value of result in webstatus
@@ -49,7 +49,7 @@ Test () {
     }
 
 
-echo -e "Hostname \tIP \tStatus \t\twww"
+echo -e "Hostname \t\tIP \tStatus \t\twww"
 echo "----------------------------------------------"
 
 # Checks the list Hostlist for IPs
