@@ -34,7 +34,7 @@ List_skript () {
     /sbin/iptables -L # Lists all rules
 }
 
-Status_skript () {
+Status_skript () {      # this line checks the status of iptable
     enabled=`cat /proc/sys/net/ipv4/ip_forward`
     if [ $enabled -eq 1 ]; then
         echo "Status......UP!!!"

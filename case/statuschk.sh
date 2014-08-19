@@ -3,6 +3,9 @@
 # Falade Olumuyiwa Lx13
 # Case 6 and 9
 # 
+# This script looks through a host list "hostlist.txt" and 
+# checks if the host are up and running.
+# so you have to make that file: hostname, Ipaddres, index.html
 #
 # This section of divides the content of the hostlist.txt
 # into three arrays: Name, IpAdd; Web for Hostname, IP add-
@@ -56,7 +59,7 @@ for i in ${!Name[@]}; do # Checks the indexes -i- for the arrays and
 
 done
 rm index.html* # removes all downloaded index files.
-    sleep 6
-    clear
+  #  sleep 6
+  #  clear
 exit 0
 
